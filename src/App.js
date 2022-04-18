@@ -1,31 +1,44 @@
-import React, { useState } from 'react'
-import Modal from './Modal'
+import React, { useState } from "react";
+import Modal from "./Modal";
+import styled from "styled-components";
 
-const BUTTON_WRAPPER_STYLES = {
-  position: 'relative',
-  zIndex: 1
-}
+const ButtonWrapper = styled.div`
+  position: relative;
+  z-index: 1;
+`;
 
-const OTHER_CONTENT_STYLES = {
-  position: 'relative',
-  zIndex: 2,
-  backgroundColor: 'red',
-  padding: '10px'
-}
+const Other = styled.div`
+  background: red;
+  position: relative;
+  z-index: 2;
+  padding: 10px;
+`;
+
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+`;
+const Nav = styled.div`
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: space-between;
+`;
 
 export default function App() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <>
-      <div style={BUTTON_WRAPPER_STYLES} onClick={() => console.log('clicked')}>
-        <button onClick={() => setIsOpen(true)}>Open Modal</button>
-
-        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-          Fancy Modal
-        </Modal>
-      </div>
-
-      <div style={OTHER_CONTENT_STYLES}>Other Content</div>
-    </>
-  )
+    <Container>
+      <Nav>
+        <div>Heading</div>
+        <ButtonWrapper onClick={() => console.log("clicked")}>
+          <button onClick={() => setIsOpen(true)}>Open Modal</button>
+        </ButtonWrapper>
+      </Nav>
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        Fancy Modal
+      </Modal>
+      <Other>Other Content</Other>
+    </Container>
+  );
 }
