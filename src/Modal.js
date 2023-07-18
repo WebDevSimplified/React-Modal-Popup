@@ -22,8 +22,12 @@ const OVERLAY_STYLES = {
 }
 
 export default function Modal({ open, children, onClose }) {
-  if (!open) return null
+  if (!open) {
+        document.getElementById('mainBody').style.overflow = 'auto'
+        return null
+    }
 
+  document.getElementById('mainBody').style.overflow = 'hidden'
   return ReactDom.createPortal(
     <>
       <div style={OVERLAY_STYLES} />
